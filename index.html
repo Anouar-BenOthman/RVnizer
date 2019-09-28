@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Tizen Mobile Web Basic Template" />
+    <title>RVnizer</title>
+	<link rel="stylesheet" href="lib/tau/mobile/theme/default/tau.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script>
+
+<script>
+
+function login(){
+	
+	var usr = document.getElementById('add-account-usr').value.trim();
+            data = document.getElementById('add-account-data')
+                .value.trim();
+	
+	console.log(usr);
+	
+	var obj;
+   
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        		console.log("Récuperation");
+    if (this.readyState === 4 ) {
+    	obj =  JSON.parse(xhttp.responseText);
+    	if (obj.length !== 0){
+    		alert('Bienvenue '+obj[0].Role_User);
+    		
+    	}
+    	
+    	else if (obj.length == 0) {
+    		alert("Vérifiez vos coordonnées.");
+    	}
+     }
+     };
+    xhttp.open("GET", "http://41.226.11.252:1180/medichelper/login2.php?login="+usr+"&password="+data);
+    xhttp.send();
+    
+  
+}
+
+
+
+
+/*
+	function SoapCall(){
+	
+	        var usr = document.getElementById('add-account-usr').value.trim(),
+            data = document.getElementById('add-account-data')
+                .value.trim(),
+	
+		var xhr = createXHR();
+		
+		xhr.open("POST", "http://41.226.11.252:1180/medichelper/login2.php", true)
+		
+		xhr.onreadystatechange = function()
+		{
+			if (xhr.readyState === 4 )
+			{
+				var xmlDoc = xhr.responseXML;
+				var d = xmlDoc.getElementsByTagName("double")[0].childNodes[0].nodeValue;
+				alert(d);
+			}
+			
+		};
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+		var postData = "login="+usr+"&password="+data;
+		xhr.send(postData);
+	}
+	
+	function createXHR()
+	{
+		var xhr;
+		if (window.XMLHttpRequest)
+		{
+			xhr = new XMLHttpRequest();
+			alert("not IE!");
+		}
+		else if (window.ActivateXObject)
+		{
+		xhr = new ActiveXObject('Microsoft.XMLHTTP');
+		alert("it's an IE");
+		}
+		else
+		{
+		throw new Error("Could not create XMLHttpRequest Object.");
+		}
+	return xhr;
+	}
+*/
+</script>
+
+</head>
+
+<body>
+     <section class="ui-page" id="add-account-view">
+        <div class="ui-header">
+            <h1 class="ui-title">RVnizer</h1>
+            
+        </div>
+        <div class="ui-content">
+            <div class="textinput-box">
+                <label for="add-account-usr">Login:</label>
+                <input type="text" id="add-account-usr" data-clear-btn="true"/>
+                
+            </div>
+            <div class="textinput-box">
+                <label for="add-account-data">Password:</label>
+                <input type="text" id="add-account-data" data-clear-btn="true"/>
+            </div>
+            
+            <div class="passOubliee">
+            	<label class="ui-label">Vou n'avez pas de compte ?</label><br>
+            	<label class="ui-label">inscrivez-vous</label>
+        	</div>
+            
+       </div>
+       
+       
+           
+        
+       
+       <div class="ui-footer">
+           <button class="ui-btn" data-tau-name="Button" id="login-button" onclick="login()">Login</button>
+       </div>
+    </section>
+    
+        <script src="lib/tau/mobile/js/tau.js"></script>
+        <script src="js/app.ui.js"></script>
+    	<script src="js/app.model.js"></script>
+    	<script src="js/app.js"></script>
+</body>
+
+</html>

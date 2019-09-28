@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Tizen Mobile Web Basic Template" />
+
+    <title>Tizen Mobile Web Basic Application</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script>
+
+    <script>
+        function login(){
+        	
+        	console.log("appel ws LOGIN");
+        	
+        	var obj;
+           
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                		console.log("Récuperation");
+            if (this.readyState === 4 ) {
+            	obj =  JSON.parse(xhttp.responseText);
+            	if ((obj[0] !== null)){
+            		alert('Bienvenue '+obj[0].Role_User);
+            	}
+            	
+            	else{
+            		console.log("Vérifiez vos coordonnées.");
+            	}
+             }
+             };
+            xhttp.open("GET", "http://41.226.11.252:1180/medichelper/login2.php?login=anouar.benothman@esprit.tn&password=anouar");
+            xhttp.send();
+            
+          
+        }
+        
+        
+        
+        
+        /*
+        	function SoapCall(){
+        		var xhr = createXHR();
+        		
+        		xhr.open("POST", "http://41.226.11.252:1180/medichelper/login2.php", true)
+        		
+        		xhr.onreadystatechange = function()
+        		{
+        			if (xhr.readyState === 4 )
+        			{
+        				var xmlDoc = xhr.responseXML;
+        				var d = xmlDoc.getElementsByTagName("double")[0].childNodes[0].nodeValue;
+        				alert(d);
+        			}
+        			
+        		};
+        		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        		var postData = "login=anouar.benothman@esprit.tn&password=anouar";
+        		xhr.send(postData);
+        	}
+        	
+        	function createXHR()
+        	{
+        		var xhr;
+        		if (window.XMLHttpRequest)
+        		{
+        			xhr = new XMLHttpRequest();
+        			alert("not IE!");
+        		}
+        		else if (window.ActivateXObject)
+        		{
+        		xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        		alert("it's an IE");
+        		}
+        		else
+        		{
+        		throw new Error("Could not create XMLHttpRequest Object.");
+        		}
+        	return xhr;
+        	}
+        */
+    </script>
+
+</head>
+
+<body>
+    <form>
+        <input type="button" value="send" onclick="login()">
+    </form>
+</body>
+
+</html>

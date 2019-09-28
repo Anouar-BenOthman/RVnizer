@@ -1,0 +1,26 @@
+.ui-page label, .ui-page h1, button.ui-btn, .margin-wrapper {
+    padding: 0 16px;
+}
+
+.ui-header {
+    height: 90px;
+}
+
+.ui-header > h1.ui-title {
+    margin-bottom: 0;
+}
+
+.ui-header > h2.ui-title {
+    font-size: 18px;
+}
+
+.textinput-box {
+    margin-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.passOubliee {
+    margin-top: 30px;
+    
+}
